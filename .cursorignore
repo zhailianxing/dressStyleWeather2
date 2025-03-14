@@ -1,0 +1,48 @@
+# 依赖目录
+node_modules/
+venv/
+.env/
+__pycache__/
+openWebview/
+
+# 构建输出
+dist/
+build/
+out/
+*.pyc
+
+# IDE 和编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# 日志文件
+*.log
+logs/
+
+# 环境配置文件
+.env
+.env.local
+.env.*.local
+
+# 临时文件
+tmp/
+temp/
+.cache/
+
+# 测试覆盖率报告
+coverage/
+.coverage
+htmlcov/
+
+# 其他常见需要忽略的文件
+*.bak
+*.tmp
+*.temp 
+
+# 本项目需要忽略的文件
+笔记.docx
+package-lock.json
+.eslintrc.js
