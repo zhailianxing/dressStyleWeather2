@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的页面</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .status-bar {
+            height: 44px;
+            background: #000;
+            color: white;
+            font-size: 12px;
+        }
+        .tab-bar {
+            height: 50px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+        .profile-card {
+            background: white;
+            border-radius: 24px;
+        }
+        .welcome-banner {
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            border-radius: 24px;
+            height: 160px;
+        }
+        .input-group {
+            position: relative;
+        }
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: #3B82F6;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .gender-button {
+            transition: all 0.3s;
+        }
+        .gender-button.active {
+            background: #EFF6FF;
+            border-color: #3B82F6;
+            color: #3B82F6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 状态栏 -->
+    <div class="status-bar flex items-center justify-between px-4">
+        <span>20:00</span>
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="p-4 space-y-6">
+        <!-- 欢迎横幅 -->
+        <div class="welcome-banner p-6 text-white flex flex-col justify-between">
+            <div>
+                <h1 class="text-3xl font-bold">个人信息</h1>
+                <p class="mt-2 opacity-90">完善信息获得个性化穿搭推荐</p>
+            </div>
+            <div class="flex items-center mt-4">
+                <div class="h-1 bg-white/30 rounded-full flex-grow">
+                    <div class="h-1 bg-white rounded-full" style="width: 30%"></div>
+                </div>
+                <span class="ml-3 text-sm">30%</span>
+            </div>
+        </div>
+
+        <!-- 个人信息表单 -->
+        <div class="profile-card p-6 space-y-6">
+            <div class="input-group">
+                <label class="block text-sm font-medium text-gray-700 mb-2">所在城市</label>
+                <div class="relative">
+                    <input type="text" placeholder="请输入您所在的城市" class="pr-10">
+                    <i class="fas fa-map-marker-alt absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">性别</label>
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="gender-button active flex items-center justify-center p-4 rounded-xl border-2">
+                        <i class="fas fa-mars text-blue-500 mr-2"></i>
+                        男生
+                    </button>
+                    <button class="gender-button flex items-center justify-center p-4 rounded-xl border-2 border-gray-200">
+                        <i class="fas fa-venus text-pink-500 mr-2"></i>
+                        女生
+                    </button>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="block text-sm font-medium text-gray-700 mb-2">个人描述</label>
+                <textarea placeholder="描述一下您的穿衣风格偏好..." rows="4" class="resize-none"></textarea>
+                <p class="mt-2 text-sm text-gray-500">例如：喜欢简约大方的穿搭风格，偏好舒适的运动休闲装...</p>
+            </div>
+        </div>
+
+        <!-- 保存按钮 -->
+        <button class="w-full bg-blue-500 text-white py-4 rounded-xl font-medium text-lg shadow-lg shadow-blue-200">
+            保存设置
+        </button>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="tab-bar fixed bottom-0 left-0 right-0 flex justify-around items-center">
+        <div class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-tshirt"></i>
+            <span class="text-xs mt-1">穿搭</span>
+        </div>
+        <div class="flex flex-col items-center text-blue-500">
+            <i class="fas fa-user"></i>
+            <span class="text-xs mt-1">我的</span>
+        </div>
+    </div>
+
+    <script>
+        // 性别选择按钮切换
+        const genderButtons = document.querySelectorAll('.gender-button');
+        genderButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                genderButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html> 

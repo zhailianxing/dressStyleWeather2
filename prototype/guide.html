@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首次引导</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            height: 100vh;
+            overflow: hidden;
+        }
+        .status-bar {
+            height: 44px;
+            background: #000;
+            color: white;
+            font-size: 12px;
+        }
+        .main-content {
+            height: calc(100vh - 44px);
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .main-content::-webkit-scrollbar {
+            display: none;
+        }
+        .step-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #EFF6FF;
+            color: #3B82F6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        .step-indicator.active {
+            background: #3B82F6;
+            color: white;
+        }
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: #3B82F6;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .gender-button {
+            transition: all 0.3s;
+        }
+        .gender-button.active {
+            background: #EFF6FF;
+            border-color: #3B82F6;
+            color: #3B82F6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 状态栏 -->
+    <div class="status-bar flex items-center justify-between px-4">
+        <span>20:00</span>
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+        <!-- 欢迎标题 -->
+        <div class="p-6 pb-2">
+            <h1 class="text-3xl font-bold">欢迎使用</h1>
+            <p class="mt-2 text-gray-600">让我们开始个性化您的穿搭推荐</p>
+        </div>
+
+        <!-- 步骤指示器 -->
+        <div class="px-6 py-4 flex items-center">
+            <div class="flex-1 flex items-center">
+                <div class="step-indicator active">1</div>
+                <div class="h-1 flex-1 mx-2 bg-blue-100">
+                    <div class="h-full w-0 bg-blue-500 transition-all duration-300"></div>
+                </div>
+                <div class="step-indicator">2</div>
+                <div class="h-1 flex-1 mx-2 bg-blue-100">
+                    <div class="h-full w-0 bg-blue-500 transition-all duration-300"></div>
+                </div>
+                <div class="step-indicator">3</div>
+            </div>
+        </div>
+
+        <!-- 表单区域 -->
+        <div class="p-6 space-y-8">
+            <!-- 城市选择 -->
+            <div class="input-group">
+                <label class="block text-sm font-medium text-gray-700 mb-2">您所在的城市</label>
+                <div class="relative">
+                    <input type="text" placeholder="请输入城市名称" class="pr-10">
+                    <i class="fas fa-map-marker-alt absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+                <p class="mt-2 text-sm text-gray-500">我们将根据您所在城市的天气为您推荐合适的穿搭</p>
+            </div>
+
+            <!-- 性别选择 -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">您的性别</label>
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="gender-button flex items-center justify-center p-4 rounded-xl border-2">
+                        <i class="fas fa-mars text-blue-500 mr-2"></i>
+                        男生
+                    </button>
+                    <button class="gender-button flex items-center justify-center p-4 rounded-xl border-2 border-gray-200">
+                        <i class="fas fa-venus text-pink-500 mr-2"></i>
+                        女生
+                    </button>
+                </div>
+            </div>
+
+            <!-- 个人特性 -->
+            <div class="space-y-6">
+                <div class="input-group">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">性格特点</label>
+                    <input type="text" placeholder="例如：活泼开朗、沉稳内敛..." class="mb-2">
+                    <p class="text-sm text-gray-500">您的性格特点会影响我们推荐的穿搭风格</p>
+                </div>
+
+                <div class="input-group">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">外观特征</label>
+                    <input type="text" placeholder="例如：身高170cm、偏瘦..." class="mb-2">
+                    <p class="text-sm text-gray-500">这些信息有助于我们推荐更适合您的穿搭</p>
+                </div>
+
+                <div class="input-group">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">穿衣偏好</label>
+                    <textarea rows="3" placeholder="描述一下您喜欢的穿衣风格、颜色、单品..." class="resize-none mb-2"></textarea>
+                    <p class="text-sm text-gray-500">让我们了解您的穿衣品味</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部按钮 -->
+        <div class="fixed bottom-0 left-0 right-0 p-6 bg-white border-t">
+            <button onclick="window.location.href='ootd.html'" class="w-full bg-blue-500 text-white py-4 rounded-xl font-medium text-lg shadow-lg shadow-blue-200">
+                开始体验
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 性别选择按钮切换
+        const genderButtons = document.querySelectorAll('.gender-button');
+        genderButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                genderButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+        // 步骤进度条动画
+        const progressBars = document.querySelectorAll('.h-1 .bg-blue-500');
+        progressBars[0].style.width = '100%';
+    </script>
+</body>
+</html> 

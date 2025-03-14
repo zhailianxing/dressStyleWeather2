@@ -11,6 +11,37 @@ Page({
     hasUserInfo: false,
     canIUseGetUserProfile: wx.canIUse('getUserProfile'),
     canIUseNicknameComp: wx.canIUse('input.type.nickname'),
+    currentStyle: '',
+    weatherData: {
+      city: '北京市',
+      temperature: 25,
+      description: '晴朗',
+      humidity: 61,
+      rainfall: 4
+    },
+    forecast: [
+      {
+        date: '周五, 3月15日',
+        emoji: '🌤️',
+        temperature: 22
+      },
+      {
+        date: '周六, 3月16日',
+        emoji: '🌧️',
+        temperature: 19
+      },
+      {
+        date: '周日, 3月17日',
+        emoji: '☀️',
+        temperature: 25
+      }
+    ],
+    styles: [
+      '韩系简约风',
+      '运动休闲风',
+      '学院风',
+      '复古文艺风'
+    ]
   },
   bindViewTap() {
     wx.navigateTo({
@@ -46,4 +77,54 @@ Page({
       }
     })
   },
+  onLoad() {
+    this.updateDateTime();
+    // 每分钟更新一次时间
+    setInterval(() => {
+      this.updateDateTime();
+    }, 60000);
+  },
+  updateDateTime() {
+    const now = new Date();
+    const days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+    const dayOfWeek = days[now.getDay()];
+    const month = now.getMonth() + 1;
+    const date = now.getDate();
+    
+    this.setData({
+      currentDate: `${dayOfWeek}, ${month}月${date}日`
+    });
+  },
+  selectStyle(e) {
+    const style = e.currentTarget.dataset.style;
+    this.setData({
+      currentStyle: style
+    });
+  },
+  generateOutfit() {
+    if (!this.data.currentStyle) {
+      wx.showToast({
+        title: '请先选择穿搭风格',
+        icon: 'none'
+      });
+      return;
+    }
+
+    wx.showLoading({
+      title: '生成穿搭中...',
+    });
+
+    // 模拟生成穿搭的延迟
+    setTimeout(() => {
+      wx.hideLoading();
+      wx.navigateTo({
+        url: '/pages/outfit/outfit'
+      });
+    }, 1500);
+  },
+  navigateToProfile() {
+    wx.navigateTo({
+      url: '/pages/profile/profile'
+    });
+  }
 })

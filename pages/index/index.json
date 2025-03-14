@@ -1,4 +1,7 @@
 {
   "usingComponents": {
-  }
+  },
+  "navigationBarTitleText": "天气穿搭",
+  "navigationStyle": "custom",
+  "disableScroll": true
 }

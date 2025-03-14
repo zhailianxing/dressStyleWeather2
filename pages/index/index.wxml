@@ -1,27 +1,96 @@
 <!--index.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    <view class="userinfo">
-      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
-        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-        </button>
-        <view class="nickname-wrapper">
-          <text class="nickname-label">昵称</text>
-          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
+<!-- 主内容区 -->
+<view class="main-content">
+  <!-- 欢迎信息 -->
+  <view class="welcome">
+    <text class="welcome-title">早上好</text>
+    <text class="welcome-date">周四, 3月14日</text>
+  </view>
+
+  <!-- 今日天气卡片 -->
+  <view class="weather-card">
+    <view class="weather-main">
+      <view>
+        <text class="city">北京市</text>
+        <view class="temperature">
+          <text class="temp-num">25°</text>
+          <text class="temp-unit">C</text>
         </view>
-      </block>
-      <block wx:elif="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
-      </block>
-      <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      </block>
+        <text class="weather-desc">晴朗</text>
+      </view>
+      <view class="weather-icon">☀️</view>
     </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
+    <view class="weather-details">
+      <view class="detail-item">
+        <view class="detail-header">
+          <text>湿度</text>
+          <text>61%</text>
+        </view>
+        <view class="progress-bar">
+          <view class="progress" style="width: 61%"></view>
+        </view>
+      </view>
+      <view class="detail-item">
+        <view class="detail-header">
+          <text>降水量</text>
+          <text>4mm</text>
+        </view>
+        <view class="progress-bar">
+          <view class="progress" style="width: 40%"></view>
+        </view>
+      </view>
     </view>
   </view>
-</scroll-view>
+
+  <!-- 未来天气预报 -->
+  <view class="forecast-card">
+    <text class="card-title">未来天气</text>
+    <view class="forecast-list">
+      <view class="forecast-item">
+        <text class="date">周五, 3月15日</text>
+        <view class="forecast-weather">
+          <text class="weather-emoji">🌤️</text>
+          <text class="forecast-temp">22°</text>
+        </view>
+      </view>
+      <view class="forecast-item">
+        <text class="date">周六, 3月16日</text>
+        <view class="forecast-weather">
+          <text class="weather-emoji">🌧️</text>
+          <text class="forecast-temp">19°</text>
+        </view>
+      </view>
+      <view class="forecast-item">
+        <text class="date">周日, 3月17日</text>
+        <view class="forecast-weather">
+          <text class="weather-emoji">☀️</text>
+          <text class="forecast-temp">25°</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日穿搭风格 -->
+  <view class="style-card">
+    <text class="card-title">今日穿搭风格</text>
+    <view class="style-grid">
+      <view class="style-btn {{currentStyle === '韩系简约风' ? 'active' : ''}}" bindtap="selectStyle" data-style="韩系简约风">韩系简约风</view>
+      <view class="style-btn {{currentStyle === '运动休闲风' ? 'active' : ''}}" bindtap="selectStyle" data-style="运动休闲风">运动休闲风</view>
+      <view class="style-btn {{currentStyle === '学院风' ? 'active' : ''}}" bindtap="selectStyle" data-style="学院风">学院风</view>
+      <view class="style-btn {{currentStyle === '复古文艺风' ? 'active' : ''}}" bindtap="selectStyle" data-style="复古文艺风">复古文艺风</view>
+    </view>
+    <button class="generate-btn" bindtap="generateOutfit">生成今日穿搭</button>
+  </view>
+</view>
+
+<!-- 底部导航栏 -->
+<view class="tab-bar">
+  <view class="tab-item active">
+    <text class="tab-icon">👔</text>
+    <text class="tab-text">穿搭</text>
+  </view>
+  <view class="tab-item" bindtap="navigateToProfile">
+    <text class="tab-icon">👤</text>
+    <text class="tab-text">我的</text>
+  </view>
+</view>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气穿搭小程序原型</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .phone-frame {
+            width: 430px;
+            height: 932px;
+            border-radius: 55px;
+            background: #1a1a1a;
+            padding: 20px;
+            position: relative;
+            box-shadow: 
+                0 50px 100px -20px rgba(0, 0, 0, 0.25),
+                0 30px 60px -30px rgba(0, 0, 0, 0.3),
+                inset 0 -2px 6px 0 rgba(255, 255, 255, 0.1);
+        }
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 35px;
+            overflow: hidden;
+            position: relative;
+        }
+        .dynamic-island {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 35px;
+            background: #000;
+            border-radius: 20px;
+            z-index: 100;
+        }
+        .preview-section {
+            padding: 2rem;
+            border-radius: 1rem;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .preview-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .preview-title i {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #3B82F6;
+            color: white;
+            border-radius: 6px;
+        }
+        .preview-container {
+            display: flex;
+            justify-content: flex-start;
+            gap: 100px;
+            padding: 40px;
+            overflow-x: auto;
+            min-width: 100%;
+            scroll-padding: 40px;
+            scroll-snap-type: x mandatory;
+        }
+        .preview-section {
+            scroll-snap-align: start;
+            flex: 0 0 auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto py-6 px-4">
+            <h1 class="text-3xl font-bold text-gray-900">天气穿搭小程序原型</h1>
+        </div>
+    </header>
+
+    <main class="max-w-full mx-auto py-12">
+        <div class="preview-container">
+            <!-- 引导页面预览 -->
+            <div class="preview-section">
+                <div class="preview-title">
+                    <i class="fas fa-magic"></i>
+                    <h2 class="text-xl font-semibold">引导页面</h2>
+                </div>
+                <div class="phone-frame">
+                    <div class="dynamic-island"></div>
+                    <div class="screen">
+                        <iframe src="guide.html" frameborder="0" width="100%" height="100%"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 穿搭页面预览 -->
+            <div class="preview-section">
+                <div class="preview-title">
+                    <i class="fas fa-tshirt"></i>
+                    <h2 class="text-xl font-semibold">穿搭页面</h2>
+                </div>
+                <div class="phone-frame">
+                    <div class="dynamic-island"></div>
+                    <div class="screen">
+                        <iframe src="ootd.html" frameborder="0" width="100%" height="100%"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 个人信息页面预览 -->
+            <div class="preview-section">
+                <div class="preview-title">
+                    <i class="fas fa-user"></i>
+                    <h2 class="text-xl font-semibold">个人信息页面</h2>
+                </div>
+                <div class="phone-frame">
+                    <div class="dynamic-island"></div>
+                    <div class="screen">
+                        <iframe src="profile.html" frameborder="0" width="100%" height="100%"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 穿搭建议弹窗预览 -->
+            <div class="preview-section">
+                <div class="preview-title">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2 class="text-xl font-semibold">穿搭建议弹窗</h2>
+                </div>
+                <div class="phone-frame">
+                    <div class="dynamic-island"></div>
+                    <div class="screen">
+                        <iframe src="action.html" frameborder="0" width="100%" height="100%"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html> 
